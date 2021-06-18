@@ -51,7 +51,7 @@
                  FontSize="Large"
                  VerticalOptions="EndAndExpand"
                  TextColor="#b0b0b0"
-                 Clicked="NewSiteEntry"
+                 Command="{Binding AddEntry}"
                 />
 
     </StackLayout>

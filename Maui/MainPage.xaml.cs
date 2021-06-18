@@ -22,7 +22,7 @@ namespace Maui
     public partial class MainPage : ContentPage
     {
 
-        public ObservableCollection<DataEntry> DataEntrys { get; set; }
+        public ObservableCollection<DataEntry> DataEntrys { get; set; } = new ObservableCollection<DataEntry>();
 
         public MainPage()
         {
@@ -30,18 +30,14 @@ namespace Maui
             BindingContext = this;
         }
 
-        void NewSiteEntry(Object sender,
-                           EventArgs e)
+        public Command AddEntry => new Command(() =>
         {
-
-        }
-
-
-        StackLayout MakeNewEntry()
-        {
-            StackLayout stack = new();
-
-            return stack;
-        }
+            System.Console.WriteLine("Adding new DataEntry!");
+            DataEntrys.Add(new DataEntry
+            {
+                Address = "Foo",
+                Port = "12345" // This could also be a number?
+            });
+        });
     }
 }
