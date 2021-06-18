@@ -33,16 +33,20 @@
                 <DataTemplate x:DataType="maui:DataEntry">
                     <ViewCell>
 
-                        <StackLayout Padding="10">
+                        <StackLayout Padding="30">
 
-                            <Entry Text="{Binding Address}" />
-                            <Entry Text="{Binding Port}" />
-                            <Label Text="{Binding ResponseCode, StringFormat='Response Code: {0}'}" />
-                            <Label Text="{Binding ResponseTime, StringFormat='Response Time: {0}'}" />
-                            <ActivityIndicator IsRunning="False" />
+                            <StackLayout>
+
+                                <Entry Text="{Binding Address}" />
+                                <Entry Text="{Binding Port}" />
+                                <Label Text="{Binding ResponseCode, StringFormat='Response Code: {0}'}" />
+                                <Label Text="{Binding ResponseTime, StringFormat='Response Time: {0}'}" />
+                                <ActivityIndicator IsRunning="False" />
+
+                            </StackLayout>
 
                         </StackLayout>
-
+                        
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

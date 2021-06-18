@@ -16,6 +16,8 @@ namespace Maui
         public string ResponseCode { get; set; }
         public string ResponseTime { get; set; }
         public string Progress { get; set; }
+        public int ID { get; set; }
+
     }
 
 
@@ -33,11 +35,24 @@ namespace Maui
         public Command AddEntry => new Command(() =>
         {
             Console.WriteLine("Adding new DataEntry!");
+
+            // Update IDs (might have changed because of removal of entry
+            for (int i = 0; i < DataEntrys.Count; i++)
+            {
+                DataEntrys[i].ID = i;
+            }
+
             DataEntrys.Add(new DataEntry
             {
                 Address = "https://github.com",
-                Port = 443
+                Port = 443,
+                ID = DataEntrys.Count
             });
+        });
+
+        public Command RemoveEntry => new Command(() =>
+        {
+
         });
     }
 }
