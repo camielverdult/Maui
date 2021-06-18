@@ -1,58 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:DataType="maui:MainPage"
+    x:Class="Maui.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:maui="clr-namespace:Maui"
-    x:Class="Maui.MainPage" BackgroundColor="#313131"
-    Title="Maui">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:maui="clr-namespace:Maui"
+    Title="Maui"
+    x:DataType="maui:MainPage"
+    BackgroundColor="#313131">
 
     <StackLayout>
-        <Label Text="Maui"
-               VerticalOptions="Start"
-               TextColor="#b0b0b0"
-               FontSize="Header"
-               Margin="10"
-               />
+        <Label
+            Margin="10"
+            FontSize="Header"
+            Text="Maui"
+            TextColor="#b0b0b0"
+            VerticalOptions="Start" />
 
-        <Label Text="Websites to check availability:"
-               TextColor="#b0b0b0"
-               Margin="25"
-               />
+        <Label
+            Margin="25"
+            Text="Websites to check availability:"
+            TextColor="#b0b0b0" />
 
-        <CollectionView
-            ItemsSource="{Binding DataEntrys}"
-            
-            x:Name="Collectionview"
-              >
+        <Button
+            Command="{Binding AddEntry}"
+            FontSize="Large"
+            Text="Add"
+            TextColor="#b0b0b0"
+            VerticalOptions="End" />
 
-            <CollectionView.ItemTemplate>
+        <ListView HasUnevenRows="True" ItemsSource="{Binding DataEntrys}">
+            <ListView.ItemTemplate>
                 <DataTemplate x:DataType="maui:DataEntry">
+                    <ViewCell>
 
-                    <StackLayout Padding="10">
-                        <Entry Text="{Binding Address}"
-                               />
-                        <Entry Text="{Binding Port}"
-                               />
-                        <Label Text="{Binding ResponseCode}"
-                               />
-                        <Label Text="{Binding ResponseTime}"
-                               />
-                        <ActivityIndicator
-                            IsRunning="False"
-                                />
-                    </StackLayout>
+                        <StackLayout Padding="10">
 
+                            <Entry Text="{Binding Address}" />
+                            <Entry Text="{Binding Port}" />
+                            <Label Text="{Binding ResponseCode, StringFormat='Response Code: {0}'}" />
+                            <Label Text="{Binding ResponseTime, StringFormat='Response Time: {0}'}" />
+                            <ActivityIndicator IsRunning="False" />
+
+                        </StackLayout>
+
+                    </ViewCell>
                 </DataTemplate>
-            </CollectionView.ItemTemplate>
-            
-        </CollectionView>
+            </ListView.ItemTemplate>
 
-        <Button  Text="Add"
-                 FontSize="Large"
-                 VerticalOptions="EndAndExpand"
-                 TextColor="#b0b0b0"
-                 Command="{Binding AddEntry}"
-                />
+        </ListView>
+
+        
 
     </StackLayout>
 

@@ -12,7 +12,7 @@ namespace Maui
     public class DataEntry
     {
         public string Address { get; set; }
-        public string Port { get; set; }
+        public int Port { get; set; }
         public string ResponseCode { get; set; }
         public string ResponseTime { get; set; }
         public string Progress { get; set; }
@@ -32,11 +32,11 @@ namespace Maui
 
         public Command AddEntry => new Command(() =>
         {
-            System.Console.WriteLine("Adding new DataEntry!");
+            Console.WriteLine("Adding new DataEntry!");
             DataEntrys.Add(new DataEntry
             {
-                Address = "Foo",
-                Port = "12345" // This could also be a number?
+                Address = "https://github.com",
+                Port = 443
             });
         });
     }

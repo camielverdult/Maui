@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{A3DF4125-D9AB-4EF2-AE83-61AA44DFB9F2}|Default">
   <MonoDevelop.Ide.ItemProperties.Maui.Android PreferredExecutionTarget="Android.SelectDevice" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Maui.macOS/Main.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Maui/SiteChecker.cs">
     <Files>
-      <File FileName="Maui/MainPage.xaml.cs" Line="33" Column="50" />
-      <File FileName="Maui.macOS/Main.cs" Line="15" Column="1" />
-      <File FileName="Maui/MainPage.xaml" Line="52" Column="48" NotebookId="1" />
+      <File FileName="Maui/MainPage.xaml.cs" Line="21" Column="1" />
+      <File FileName="Maui.macOS/Main.cs" Line="11" Column="1" />
+      <File FileName="Maui/SiteChecker.cs" Line="7" Column="10" />
+      <File FileName="Maui/MainPage.xaml" Line="43" Column="35" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,21 +15,20 @@
               <Node name="Dependencies" expanded="True" />
               <Node name="App.xaml" expanded="True" />
               <Node name="MainPage.xaml" expanded="True" />
+              <Node name="SiteChecker.cs" selected="True" />
             </Node>
             <Node name="Maui.Android" expanded="True" />
             <Node name="Maui.iOS" expanded="True" />
-            <Node name="Maui.macOS" expanded="True">
-              <Node name="Main.cs" selected="True" />
-            </Node>
+            <Node name="Maui.macOS" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" />
   <MonoDevelop.Ide.ItemProperties.Maui.macOS PreferredExecutionTarget="Test1" />
-  <MonoDevelop.Ide.ItemProperties.Maui.iOS FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.Maui.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.00008020-000D45C821E1002E" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
