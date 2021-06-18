@@ -19,13 +19,13 @@
 
         <CollectionView
             ItemsSource="{Binding DataEntrys}"
-            BindingContext="{x:Reference} DataEntrys"
-            x:DataType="maui:DataEntry"
+            
             x:Name="Collectionview"
               >
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
+
                     <StackLayout Padding="10">
                         <Entry Text="{Binding Address}"
                                />
@@ -38,8 +38,8 @@
                         <ActivityIndicator
                             IsRunning="False"
                                 />
-
                     </StackLayout>
+
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             

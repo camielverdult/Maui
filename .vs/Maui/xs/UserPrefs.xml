@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{A3DF4125-D9AB-4EF2-AE83-61AA44DFB9F2}|Default">
   <MonoDevelop.Ide.ItemProperties.Maui.Android PreferredExecutionTarget="Android.SelectDevice" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Maui/MainPage.xaml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Maui/MainPage.xaml">
     <Files>
       <File FileName="Maui/MainPage.xaml.cs" Line="25" Column="67" />
       <File FileName="Maui/MainPage.xaml" Line="22" Column="53" NotebookId="1" />
