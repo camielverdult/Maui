@@ -1,0 +1,14 @@
+/Users/camiel/Documents/school/real world interactions/Maui/Maui/bin/Debug/netstandard2.0/Maui.deps.json
+/Users/camiel/Documents/school/real world interactions/Maui/Maui/bin/Debug/netstandard2.0/Maui.dll
+/Users/camiel/Documents/school/real world interactions/Maui/Maui/bin/Debug/netstandard2.0/ref/Maui.dll
+/Users/camiel/Documents/school/real world interactions/Maui/Maui/bin/Debug/netstandard2.0/Maui.pdb
+/Users/camiel/Documents/school/real world interactions/Maui/Maui/obj/Debug/netstandard2.0/Maui.csprojAssemblyReference.cache
+/Users/camiel/Documents/school/real world interactions/Maui/Maui/obj/Debug/netstandard2.0/App.xaml.g.cs
+/Users/camiel/Documents/school/real world interactions/Maui/Maui/obj/Debug/netstandard2.0/MainPage.xaml.g.cs
+/Users/camiel/Documents/school/real world interactions/Maui/Maui/obj/Debug/netstandard2.0/Maui.AssemblyInfoInputs.cache
+/Users/camiel/Documents/school/real world interactions/Maui/Maui/obj/Debug/netstandard2.0/Maui.AssemblyInfo.cs
+/Users/camiel/Documents/school/real world interactions/Maui/Maui/obj/Debug/netstandard2.0/Maui.csproj.CoreCompileInputs.cache
+/Users/camiel/Documents/school/real world interactions/Maui/Maui/obj/Debug/netstandard2.0/XamlC.stamp
+/Users/camiel/Documents/school/real world interactions/Maui/Maui/obj/Debug/netstandard2.0/Maui.dll
+/Users/camiel/Documents/school/real world interactions/Maui/Maui/obj/Debug/netstandard2.0/ref/Maui.dll
+/Users/camiel/Documents/school/real world interactions/Maui/Maui/obj/Debug/netstandard2.0/Maui.pdb

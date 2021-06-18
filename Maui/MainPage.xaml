@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:maui="clr-namespace:Maui"
+             x:Class="Maui.MainPage" BackgroundColor="#313131"
+             Title="Maui">
+
+    <StackLayout>
+        <Label Text="Maui"
+               VerticalOptions="Start"
+               TextColor="#b0b0b0"
+               FontSize="Header"
+               Margin="10"
+               />
+
+        <Label Text="Websites to check availability:"
+               TextColor="#b0b0b0"
+               Margin="25"
+               />
+
+        <CollectionView
+            ItemsSource="{Binding DataEntrys}"
+            BindingContext="{x:Reference} DataEntrys"
+            x:DataType="maui:DataEntry"
+            x:Name="Collectionview"
+              >
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Entry Text="{Binding Address}"
+                               />
+                        <Entry Text="{Binding Port}"
+                               />
+                        <Label Text="{Binding ResponseCode}"
+                               />
+                        <Label Text="{Binding ResponseTime}"
+                               />
+                        <ActivityIndicator
+                            IsRunning="False"
+                                />
+
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+
+        <Button  Text="Add"
+                 FontSize="Large"
+                 VerticalOptions="EndAndExpand"
+                 TextColor="#b0b0b0"
+                 Clicked="NewSiteEntry"
+                />
+
+    </StackLayout>
+
+</ContentPage>
