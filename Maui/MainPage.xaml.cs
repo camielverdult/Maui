@@ -15,8 +15,26 @@ namespace Maui
         public int Port { get; set; }
         public string ResponseCode { get; set; }
         public string ResponseTime { get; set; }
-        public string Progress { get; set; }
+        public int Progress { get; set; }
         public int ID { get; set; }
+
+        public void Print()
+        {
+            Console.WriteLine("DataEntry");
+            Console.WriteLine("{");
+            Console.WriteLine("Address: {0},", Address);
+            Console.WriteLine("Port: {0},", Port);
+            Console.WriteLine("ResponseCode: {0},", ResponseCode);
+            Console.WriteLine("ResponseTime: {0},", ResponseTime);
+            Console.WriteLine("Progress: {0},", Progress);
+            Console.WriteLine("ID: {0},", ID);
+            Console.WriteLine("};");
+        }
+
+        public Command RemoveEntry => new Command(() =>
+        {
+
+        });
 
     }
 
@@ -40,19 +58,23 @@ namespace Maui
             for (int i = 0; i < DataEntrys.Count; i++)
             {
                 DataEntrys[i].ID = i;
+                
             }
 
             DataEntrys.Add(new DataEntry
             {
                 Address = "https://github.com",
                 Port = 443,
+                ResponseCode = "-",
+                ResponseTime = "-",
+                Progress = 0,
                 ID = DataEntrys.Count
             });
         });
 
         public Command RemoveEntry => new Command(() =>
         {
-
+            Console.WriteLine("ayo PA!");
         });
     }
 }

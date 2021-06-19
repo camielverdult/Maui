@@ -26,24 +26,84 @@
             FontSize="Large"
             Text="Add"
             TextColor="#b0b0b0"
-            VerticalOptions="End" />
+            VerticalOptions="End"
+            BackgroundColor="Transparent"
+            />
 
-        <ListView HasUnevenRows="True" ItemsSource="{Binding DataEntrys}">
+        <ListView HasUnevenRows="True"
+                  ItemsSource="{Binding DataEntrys}"
+                  BackgroundColor="Transparent"
+                  SelectionMode="None"
+                  >
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="maui:DataEntry">
-                    <ViewCell>
+                    <ViewCell Height="100">
 
                         <StackLayout Padding="30">
 
-                            <StackLayout>
+                            <Grid BackgroundColor="Transparent">
 
-                                <Entry Text="{Binding Address}" />
-                                <Entry Text="{Binding Port}" />
-                                <Label Text="{Binding ResponseCode, StringFormat='Response Code: {0}'}" />
-                                <Label Text="{Binding ResponseTime, StringFormat='Response Time: {0}'}" />
-                                <ActivityIndicator IsRunning="False" />
+                                <Grid.ColumnDefinitions>
 
-                            </StackLayout>
+                                    <ColumnDefinition Width="250" />
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="Auto" />
+
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+
+                                    <RowDefinition Height="Auto" />
+
+                                </Grid.RowDefinitions>
+
+                                <Entry
+                                    Text="{Binding Address}"
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    TextColor="WhiteSmoke"
+                                    IsSpellCheckEnabled="False"
+                                    IsTextPredictionEnabled="False"
+                                    PlaceholderColor="Transparent"
+                                    />
+
+                                <Entry
+                                    Text="{Binding Port}"
+                                    Grid.Column="1"
+                                    Grid.Row="0"
+                                    TextColor="WhiteSmoke"
+                                    />
+
+                                <Label
+                                    Text="{Binding ResponseCode, StringFormat='Response Code: {0}'}"
+                                    Grid.Column="2"
+                                    Grid.Row="0"
+                                    BackgroundColor="Transparent"
+                                    TextColor="WhiteSmoke"
+                                    />
+
+                                <Label
+                                    Text="{Binding ResponseTime, StringFormat='Response Time: {0}'}"
+                                    Grid.Column="3"
+                                    Grid.Row="0"
+                                    TextColor="WhiteSmoke"
+                                    />
+
+                                <ActivityIndicator
+                                    IsRunning="False"
+                                    IsVisible="False"
+                                    Grid.Column="4"
+                                    Grid.Row="0"
+                                    />
+
+                                <Button
+                                    Command="RemoveEntry"
+                                    />
+
+                            </Grid>
 
                         </StackLayout>
                         
