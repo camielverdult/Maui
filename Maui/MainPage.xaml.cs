@@ -36,6 +36,10 @@ namespace Maui
             Console.WriteLine("ID: {0},", ID);
             Console.WriteLine("};");
         }
+
+        public Command<DataEntry> DeleteItem = new((DataEntry entry) =>
+        {
+        });
     }
 
 
@@ -82,8 +86,8 @@ namespace Maui
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(@entry.Address);
+                client.Timeout = TimeSpan.FromSeconds(10);
 
-                // You don't need await here
                 var stopWatch = Stopwatch.StartNew();
                 HttpResponseMessage response = await client.GetAsync($"{entry.Address}:{entry.Port}");
 
@@ -102,8 +106,6 @@ namespace Maui
                 }
             }
         }
-            
-   
 
         public Command Run => new(async () =>
         {
@@ -112,6 +114,8 @@ namespace Maui
             {
                 await CheckEntryAsync(entry);
             }
+
+            DataEntryList.BeginRefresh();
         });
 
 

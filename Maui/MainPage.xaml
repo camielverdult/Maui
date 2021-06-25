@@ -6,7 +6,8 @@
     xmlns:maui="clr-namespace:Maui"
     Title="Maui"
     x:DataType="maui:MainPage"
-    BackgroundColor="#313131">
+    BackgroundColor="#313131"
+    >
 
     <StackLayout>
         <Label
@@ -132,6 +133,18 @@
                                     IsVisible="{Binding ActivityVisible}"
                                     Grid.Column="4"
                                     Grid.Row="0"
+                                    />
+
+                                <Button
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Command="{Binding DeleteItem}"
+                                    CommandParameter="self (}Binding .}"
+                                    FontSize="Default"
+                                    Text="deletthis"
+                                    TextColor="WhiteSmoke"
+                                    VerticalOptions="End"
+                                    BackgroundColor="Transparent"
                                     />
 
                             </Grid>

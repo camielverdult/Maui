@@ -1,17 +1,18 @@
 ﻿<Properties StartupConfiguration="{A3DF4125-D9AB-4EF2-AE83-61AA44DFB9F2}|Default">
   <MonoDevelop.Ide.ItemProperties.Maui.Android PreferredExecutionTarget="Android.SelectDevice" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Maui/MainPage.xaml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Maui/MainPage.xaml.cs">
     <Files>
-      <File FileName="Maui/MainPage.xaml.cs" Line="106" Column="4" />
-      <File FileName="Maui/MainPage.xaml" Line="63" Column="64" />
-      <File FileName="Maui.macOS/Main.cs" />
+      <File FileName="Maui/MainPage.xaml.cs" Line="85" Column="51" />
+      <File FileName="Maui/MainPage.xaml" Line="69" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Maui" expanded="True">
             <Node name="Maui" expanded="True">
-              <Node name="MainPage.xaml" expanded="True" selected="True" />
+              <Node name="MainPage.xaml" expanded="True">
+                <Node name="MainPage.xaml.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="Maui.macOS" expanded="True" />
           </Node>
