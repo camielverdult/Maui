@@ -75,7 +75,7 @@ namespace Maui
             });
         });
 
-        public Command<DataEntry> DeleteEntry = new((DataEntry entry) =>
+        public Command<DataEntry> DeleteEntry => new((DataEntry entry) =>
         {
         });
 
@@ -115,7 +115,7 @@ namespace Maui
                 await CheckEntryAsync(entry);
             }
 
-            DataEntryList.BeginRefresh();
+
         });
 
 
