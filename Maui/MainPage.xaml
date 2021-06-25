@@ -60,7 +60,7 @@
             TextColor="#b0b0b0" />
 
         <ListView HasUnevenRows="True"
-                  ItemsSource="{Binding DataEntrys, Mode=TwoWay}"
+                  ItemsSource="{Binding DataEntrys, Mode=OneWay}"
                   BackgroundColor="Transparent"
                   SelectionMode="None"
                   x:Name="DataEntryList"
