@@ -36,10 +36,6 @@ namespace Maui
             Console.WriteLine("ID: {0},", ID);
             Console.WriteLine("};");
         }
-
-        public Command<DataEntry> DeleteItem = new((DataEntry entry) =>
-        {
-        });
     }
 
 
@@ -76,7 +72,11 @@ namespace Maui
                 ActivityRunning = false,
                 ActivityVisible = false,
                 ResponseColor = Color.WhiteSmoke
-            }); ;
+            });
+        });
+
+        public Command<DataEntry> DeleteEntry = new((DataEntry entry) =>
+        {
         });
 
         async Task CheckEntryAsync(DataEntry entry)
