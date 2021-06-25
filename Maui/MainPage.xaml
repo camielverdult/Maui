@@ -81,6 +81,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
 
                                 </Grid.ColumnDefinitions>
 
@@ -137,7 +138,7 @@
 
                                 <Button
                                     Grid.Row="0"
-                                    Grid.Column="1"
+                                    Grid.Column="5"
                                     Command="{Binding DeleteItem}"
                                     CommandParameter="self (}Binding .}"
                                     FontSize="Default"
