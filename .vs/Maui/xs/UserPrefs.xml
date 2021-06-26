@@ -1,27 +1,28 @@
 ﻿<Properties StartupConfiguration="{A3DF4125-D9AB-4EF2-AE83-61AA44DFB9F2}|Default">
   <MonoDevelop.Ide.ItemProperties.Maui.Android PreferredExecutionTarget="Android.SelectDevice" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Maui/MainPage.xaml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Maui.macOS/Main.cs">
     <Files>
-      <File FileName="Maui/MainPage.xaml.cs" Line="85" Column="51" />
-      <File FileName="Maui/MainPage.xaml" Line="69" Column="18" />
+      <File FileName="Maui/MainPage.xaml.cs" Line="252" Column="18" />
+      <File FileName="Maui/MainPage.xaml" Line="117" Column="101" />
+      <File FileName="Maui.macOS/Main.cs" Line="11" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Maui" expanded="True">
             <Node name="Maui" expanded="True">
-              <Node name="MainPage.xaml" expanded="True">
-                <Node name="MainPage.xaml.cs" selected="True" />
-              </Node>
+              <Node name="MainPage.xaml" expanded="True" />
             </Node>
-            <Node name="Maui.macOS" expanded="True" />
+            <Node name="Maui.macOS" expanded="True">
+              <Node name="Main.cs" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.Maui.macOS PreferredExecutionTarget="Test1" />
   <MonoDevelop.Ide.ItemProperties.Maui.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.00008020-000D45C821E1002E" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

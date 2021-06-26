@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:maui="clr-namespace:Maui"
     Title="Maui"
+    x:Name="mainPage"
     x:DataType="maui:MainPage"
     BackgroundColor="#313131"
     >
@@ -139,10 +140,10 @@
                                 <Button
                                     Grid.Row="0"
                                     Grid.Column="5"
-                                    Command="{Binding DeleteEntry}"
+                                    Command="{Binding Source={x:Reference mainPage}, Path=BindingContext.DeleteEntry}"
                                     CommandParameter="{Binding .}"
                                     FontSize="Default"
-                                    Text="deletthis"
+                                    Text="Delete"
                                     TextColor="WhiteSmoke"
                                     VerticalOptions="End"
                                     BackgroundColor="Transparent"
