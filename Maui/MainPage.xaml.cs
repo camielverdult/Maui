@@ -188,12 +188,6 @@ namespace Maui
             Console.WriteLine("ID: {0},", ID);
             Console.WriteLine("};");
         }
-
-        public DataEntry()
-        {
-
-        }
-
     }
 
 
@@ -220,9 +214,23 @@ namespace Maui
                 
             }
 
+            var random = new Random();
+
+            var websites = new List<string> {
+                "https://youtube.com",
+                "https://github.com",
+                "https://google.com",
+                "https://saxion.nl",
+                "https://microsoft.com",
+                "https://netflix.com",
+                "https://camiel.pw"
+            };
+
+            int random_i = random.Next(websites.Count);
+
             DataEntrys.Add(new DataEntry
             {
-                Address = "https://youtube.com",
+                Address = websites[random_i],
                 Port = 443,
                 ResponseCode = "-",
                 ResponseTime = "-",
@@ -239,69 +247,92 @@ namespace Maui
             DataEntrys.Remove(entry);
         });
 
-        async Task CheckEntryAsync(DataEntry entry)
+        bool checking_task;
+
+        public Command Run => new(() =>
         {
-            Console.WriteLine($"Checking {entry.Address}");
-
-            
-
-            using (HttpClient client = new HttpClient())
+            if (!checking_task)
             {
-                entry.ActivityRunning = true;
-                try
+                checking_task = true;
+                foreach (DataEntry entry in DataEntrys)
                 {
-                    client.BaseAddress = new Uri(@entry.Address);
-                }
-                catch (System.UriFormatException)
-                {
-                    entry.ResponseCode = "Invalid URL!";
-                    entry.ResponseColor = Color.Red;
-                    return;
-                }
-                client.Timeout = TimeSpan.FromSeconds(10);
-
-                var stopWatch = Stopwatch.StartNew();
-                try
-                {
-                    entry.ActivityVisible = true;
-                    
-                    HttpResponseMessage response = await client.GetAsync($"{entry.Address}:{entry.Port}");
-                    entry.ResponseTime = stopWatch.ElapsedMilliseconds.ToString();
-                    entry.ResponseCode = response.StatusCode.ToString();
-
-                    if (response.IsSuccessStatusCode)
+                    Task.Run(() =>
                     {
-                        entry.ResponseColor = Color.Green;
-                        Console.WriteLine($"{entry.Address} : {entry.Port} gelukt");
-                    }
-                    else
-                    {
-                        entry.ResponseColor = Color.DarkRed;
-                        Console.WriteLine($"{entry.Address} : {entry.Port} mislukt");
-                    }
+                        Console.WriteLine($"Checking {entry.Address}");
+
+                        using (HttpClient client = new HttpClient())
+                        {
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                entry.ActivityRunning = true;
+                            });
+                            try
+                            {
+                                client.BaseAddress = new Uri(@entry.Address);
+                            }
+                            catch (UriFormatException)
+                            {
+                                Device.BeginInvokeOnMainThread(() =>
+                                {
+                                    entry.ResponseCode = "Invalid URL!";
+                                    entry.ResponseColor = Color.Red;
+                                });
+                                return;
+                            }
+                            client.Timeout = TimeSpan.FromSeconds(10);
+
+                            var stopWatch = Stopwatch.StartNew();
+                            try
+                            {
+                                Device.BeginInvokeOnMainThread(() =>
+                                {
+                                    entry.ActivityVisible = true;
+                                });
+
+                                HttpResponseMessage response = client.GetAsync($"{entry.Address}:{entry.Port}").Result;
+                                Device.BeginInvokeOnMainThread(() =>
+                                {
+                                    entry.ResponseTime = stopWatch.ElapsedMilliseconds.ToString() + "ms";
+                                    entry.ResponseCode = response.StatusCode.ToString();
+                                });
+
+                                if (response.IsSuccessStatusCode)
+                                {
+                                    Device.BeginInvokeOnMainThread(() =>
+                                    {
+                                        entry.ResponseColor = Color.Green;
+                                        Console.WriteLine($"{entry.Address} : {entry.Port} gelukt");
+                                    });
+                                }
+                                else
+                                {
+                                    Device.BeginInvokeOnMainThread(() =>
+                                    {
+                                        entry.ResponseColor = Color.DarkRed;
+                                        Console.WriteLine($"{entry.Address} : {entry.Port} mislukt");
+                                    });
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                Device.BeginInvokeOnMainThread(() =>
+                                {
+                                    entry.ResponseCode = "Invalid URL!";
+                                    entry.ResponseColor = Color.Red;
+                                });
+                                return;
+                            }
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                entry.ActivityRunning = false;
+                                entry.ActivityVisible = false;
+                            });
+                        }
+                    });
                 }
-                catch (Exception)
-                {
-                    entry.ResponseCode = "Invalid URL!";
-                    entry.ResponseColor = Color.Red;
-                    return;
-                }
 
-                entry.ActivityRunning = false;
-                entry.ActivityVisible = false;
-
+                checking_task = false;
             }
-        }
-
-        public Command Run => new(async () =>
-        {
-            Console.WriteLine("Checking things...");
-            foreach (DataEntry entry in DataEntrys)
-            {
-                await CheckEntryAsync(entry);
-            }
-
-
         });
 
 
