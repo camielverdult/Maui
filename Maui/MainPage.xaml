@@ -7,7 +7,7 @@
     Title="Maui"
     x:Name="mainPage"
     x:DataType="maui:MainPage"
-    BackgroundColor="#313131"
+    BackgroundColor="#1f1b20"
     >
 
     <StackLayout>
@@ -15,15 +15,18 @@
             Margin="10"
             FontSize="Header"
             Text="Maui"
-            TextColor="#b0b0b0"
+            TextColor="#e6e6e6"
             VerticalOptions="Start" />
 
         <Grid BackgroundColor="Transparent">
 
             <Grid.ColumnDefinitions>
 
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
 
             </Grid.ColumnDefinitions>
 
@@ -33,24 +36,24 @@
 
             <Button
                 Grid.Row="0"
-                Grid.Column="0"
+                Grid.Column="1"
                 Command="{Binding AddEntry}"
                 FontSize="Large"
                 Text="Add"
-                TextColor="#b0b0b0"
+                TextColor="#e6e6e6"
                 VerticalOptions="End"
-                BackgroundColor="Transparent"
+                BackgroundColor="#575458"
                 />
 
             <Button
                 Grid.Row="0"
-                Grid.Column="1"
+                Grid.Column="3"
                 Command="{Binding Run}"
                 FontSize="Large"
                 Text="Run"
-                TextColor="#b0b0b0"
+                TextColor="#e6e6e6"
                 VerticalOptions="End"
-                BackgroundColor="Transparent"
+                BackgroundColor="#575458"
                 x:Name="RunButton"
                 />
 
@@ -59,12 +62,12 @@
         <Label
             Margin="25"
             Text="Websites to check availability:"
-            TextColor="#b0b0b0" />
+            TextColor="#e6e6e6" />
 
         <ListView HasUnevenRows="True"
                   ItemsSource="{Binding DataEntrys, Mode=OneWay}"
                   BackgroundColor="Transparent"
-                  SelectionMode="None"
+                  SelectionMode="Single"
                   x:Name="DataEntryList"
                   >
             <ListView.ItemTemplate>
@@ -108,7 +111,7 @@
                                     Text="{Binding Port}"
                                     Grid.Column="1"
                                     Grid.Row="0"
-                                    TextColor="WhiteSmoke"
+                                    TextColor="#e6e6e6"
                                     HorizontalOptions="Center"
                                     WidthRequest="60"
                                     />
@@ -126,7 +129,7 @@
                                     Text="{Binding ResponseTime, StringFormat='Response Time: {0}'}"
                                     Grid.Column="3"
                                     Grid.Row="0"
-                                    TextColor="WhiteSmoke"
+                                    TextColor="#e6e6e6"
                                     HorizontalOptions="Center"
                                     />
 
@@ -144,9 +147,10 @@
                                     CommandParameter="{Binding .}"
                                     FontSize="Default"
                                     Text="Delete"
-                                    TextColor="WhiteSmoke"
+                                    TextColor="#e6e6e6"
                                     VerticalOptions="End"
-                                    BackgroundColor="Transparent"
+                                    BackgroundColor="#575458"
+                                    Padding="10"
                                     />
 
                             </Grid>

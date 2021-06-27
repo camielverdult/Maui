@@ -202,6 +202,7 @@ namespace Maui
 
         public ObservableCollection<DataEntry> DataEntrys { get; set; } = new ObservableCollection<DataEntry>();
 
+
         public MainPage()
         {
             InitializeComponent();
@@ -287,6 +288,7 @@ namespace Maui
                 }
 
                 entry.ActivityRunning = false;
+                entry.ActivityVisible = false;
 
             }
         }
