@@ -54,7 +54,6 @@
                 TextColor="#e6e6e6"
                 VerticalOptions="End"
                 BackgroundColor="#575458"
-                x:Name="RunButton"
                 />
 
         </Grid>
@@ -97,6 +96,7 @@
                 Grid.Row="0"
                 Grid.Column="4"
                 VerticalOptions="End"
+                SelectedIndexChanged="Picker_OnSelectedIndexChanged"
                 >
 
                 <Picker.ItemsSource>
@@ -118,7 +118,7 @@
         <ListView HasUnevenRows="True"
                   ItemsSource="{Binding DataEntrys, Mode=OneWay}"
                   BackgroundColor="Transparent"
-                  SelectionMode="Single"
+                  SelectionMode="None"
                   x:Name="DataEntryList"
                   >
             <ListView.ItemTemplate>
@@ -215,8 +215,6 @@
             </ListView.ItemTemplate>
 
         </ListView>
-
-        
 
     </StackLayout>
 

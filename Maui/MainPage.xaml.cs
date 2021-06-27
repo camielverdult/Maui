@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -196,6 +194,65 @@ namespace Maui
 
         public ObservableCollection<DataEntry> DataEntrys { get; set; } = new ObservableCollection<DataEntry>();
 
+        private Timer CheckTimer;
+        bool TimerRunning = false;
+
+        public void Picker_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Picker p = (Picker)sender;
+
+                string selected = p.Items[p.SelectedIndex];
+                if (selected.Equals("-"))
+                {
+                    if (TimerRunning)
+                    {
+                        // Destroy timer
+                        CheckTimer.Dispose();
+                        TimerRunning = false;
+                    }
+                    return;
+                }
+
+                int time = new();
+
+                string last = selected.Substring(selected.Length - 1);
+
+                string filtered = selected.Substring(0, selected.Length - 1);
+
+                // Remove latest character
+                Console.WriteLine(selected[selected.Length - 1]);
+                if (last.Equals("s"))
+                {
+                    time = int.Parse(filtered);
+                } else
+                {
+                    time = int.Parse(filtered) * 60;
+                }
+
+                if (!TimerRunning)
+                {
+                    CheckTimer = new(
+                        this.Timerfunction,
+                        new AutoResetEvent(false),
+                        0,
+                        time * 1000
+                        );
+                    TimerRunning = true;
+                } else
+                {
+                    CheckTimer.Change(0, time * 1000);
+                    TimerRunning = true;
+                }
+                
+            }
+            catch (InvalidCastException)
+            {
+                Console.WriteLine("this is not good");
+                return;
+            }
+        }
 
         public MainPage()
         {
@@ -214,7 +271,7 @@ namespace Maui
                 
             }
 
-            var random = new Random();
+            Random random = new();
 
             var websites = new List<string> {
                 "https://youtube.com",
@@ -223,7 +280,10 @@ namespace Maui
                 "https://saxion.nl",
                 "https://microsoft.com",
                 "https://netflix.com",
-                "https://camiel.pw"
+                "https://camiel.pw",
+                "https://stackoverflow.com",
+                "https://disneyplus.com",
+                "https://bison.saxion.nl"
             };
 
             int random_i = random.Next(websites.Count);
@@ -247,6 +307,90 @@ namespace Maui
             DataEntrys.Remove(entry);
         });
 
+        void Timerfunction(object stateinfo)
+        {
+            CheckEntrys();
+        }
+
+        void CheckEntrys()
+        {
+            foreach (DataEntry entry in DataEntrys)
+            {
+                Task.Run(() =>
+                {
+                    Console.WriteLine($"Checking {entry.Address}");
+
+                    using (HttpClient client = new HttpClient())
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            entry.ActivityRunning = true;
+                        });
+                        try
+                        {
+                            client.BaseAddress = new Uri(@entry.Address);
+                        }
+                        catch (UriFormatException)
+                        {
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                entry.ResponseCode = "Invalid URL!";
+                                entry.ResponseColor = Color.Red;
+                            });
+                            return;
+                        }
+                        client.Timeout = TimeSpan.FromSeconds(10);
+
+                        try
+                        {
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                entry.ActivityVisible = true;
+                            });
+                            var stopWatch = Stopwatch.StartNew();
+                            HttpResponseMessage response = client.GetAsync($"{entry.Address}:{entry.Port}").Result;
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                entry.ResponseTime = stopWatch.ElapsedMilliseconds.ToString() + "ms";
+                                entry.ResponseCode = response.StatusCode.ToString();
+                            });
+
+                            if (response.IsSuccessStatusCode)
+                            {
+                                Device.BeginInvokeOnMainThread(() =>
+                                {
+                                    entry.ResponseColor = Color.Green;
+                                    Console.WriteLine($"{entry.Address} : {entry.Port} gelukt");
+                                });
+                            }
+                            else
+                            {
+                                Device.BeginInvokeOnMainThread(() =>
+                                {
+                                    entry.ResponseColor = Color.DarkRed;
+                                    Console.WriteLine($"{entry.Address} : {entry.Port} mislukt");
+                                });
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                entry.ResponseCode = "Invalid URL!";
+                                entry.ResponseColor = Color.Red;
+                            });
+                            return;
+                        }
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            entry.ActivityRunning = false;
+                            entry.ActivityVisible = false;
+                        });
+                    }
+                });
+            }
+        }
+
         bool checking_task;
 
         public Command Run => new(() =>
@@ -254,82 +398,8 @@ namespace Maui
             if (!checking_task)
             {
                 checking_task = true;
-                foreach (DataEntry entry in DataEntrys)
-                {
-                    Task.Run(() =>
-                    {
-                        Console.WriteLine($"Checking {entry.Address}");
 
-                        using (HttpClient client = new HttpClient())
-                        {
-                            Device.BeginInvokeOnMainThread(() =>
-                            {
-                                entry.ActivityRunning = true;
-                            });
-                            try
-                            {
-                                client.BaseAddress = new Uri(@entry.Address);
-                            }
-                            catch (UriFormatException)
-                            {
-                                Device.BeginInvokeOnMainThread(() =>
-                                {
-                                    entry.ResponseCode = "Invalid URL!";
-                                    entry.ResponseColor = Color.Red;
-                                });
-                                return;
-                            }
-                            client.Timeout = TimeSpan.FromSeconds(10);
-
-                            var stopWatch = Stopwatch.StartNew();
-                            try
-                            {
-                                Device.BeginInvokeOnMainThread(() =>
-                                {
-                                    entry.ActivityVisible = true;
-                                });
-
-                                HttpResponseMessage response = client.GetAsync($"{entry.Address}:{entry.Port}").Result;
-                                Device.BeginInvokeOnMainThread(() =>
-                                {
-                                    entry.ResponseTime = stopWatch.ElapsedMilliseconds.ToString() + "ms";
-                                    entry.ResponseCode = response.StatusCode.ToString();
-                                });
-
-                                if (response.IsSuccessStatusCode)
-                                {
-                                    Device.BeginInvokeOnMainThread(() =>
-                                    {
-                                        entry.ResponseColor = Color.Green;
-                                        Console.WriteLine($"{entry.Address} : {entry.Port} gelukt");
-                                    });
-                                }
-                                else
-                                {
-                                    Device.BeginInvokeOnMainThread(() =>
-                                    {
-                                        entry.ResponseColor = Color.DarkRed;
-                                        Console.WriteLine($"{entry.Address} : {entry.Port} mislukt");
-                                    });
-                                }
-                            }
-                            catch (Exception)
-                            {
-                                Device.BeginInvokeOnMainThread(() =>
-                                {
-                                    entry.ResponseCode = "Invalid URL!";
-                                    entry.ResponseColor = Color.Red;
-                                });
-                                return;
-                            }
-                            Device.BeginInvokeOnMainThread(() =>
-                            {
-                                entry.ActivityRunning = false;
-                                entry.ActivityVisible = false;
-                            });
-                        }
-                    });
-                }
+                CheckEntrys();
 
                 checking_task = false;
             }
